@@ -1,0 +1,3 @@
+* server : start the server.
+* client : used for testing delay.
+* client_continuous : used for testing QPS.

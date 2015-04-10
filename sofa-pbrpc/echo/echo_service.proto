@@ -1,0 +1,23 @@
+import "sofa/pbrpc/rpc_option.proto";
+
+package sofa.pbrpc.test;
+
+option cc_generic_services = true;
+
+message EchoRequest {
+    required string message = 1;
+}
+
+message EchoResponse {
+    required string message = 1;
+}
+
+service EchoServer {
+    option (sofa.pbrpc.service_timeout) = 2000; // service timeout 2 seconds
+
+    rpc Echo(EchoRequest) returns(EchoResponse) {
+        option (sofa.pbrpc.method_timeout) = 4000;  // method timeout 4 seconds
+        option (sofa.pbrpc.request_compress_type) = CompressTypeGzip; // request compress
+        option (sofa.pbrpc.response_compress_type) = CompressTypeGzip; // response compress
+    }
+}
